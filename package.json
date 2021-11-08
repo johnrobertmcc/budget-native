@@ -25,6 +25,7 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@arkweid/lefthook": "^0.7.7",
     "@babel/core": "^7.12.9",
     "eslint": "^8.2.0",
     "eslint-plugin-prettier": "^4.0.0",
