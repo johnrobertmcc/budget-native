@@ -13,6 +13,11 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: 'module'
   },
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   plugins: ['react', 'react-hooks', 'prettier', 'jsdoc'],
   rules: {
     'func-style': ['error', 'declaration'],
