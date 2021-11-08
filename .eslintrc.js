@@ -11,7 +11,7 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: 'module'
   },
-  plugins: ['react'],
+  plugins: ['react', 'react-hooks', 'prettier'],
   rules: {
     '@next/next/no-img-element': 'off',
     'func-style': ['error', 'declaration'],
