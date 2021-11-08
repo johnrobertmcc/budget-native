@@ -72,7 +72,7 @@ export default function SignUp() {
           value={confirm}
           onChangeText={(text) => setConfirm(text)}
         />
-        {!confirmPassword() && <Text style={styles.warning}> Passwords don't match</Text>}
+        {!confirmPassword() && <Text style={styles.warning}> Passwords do not match</Text>}
       </View>
       <View style={globalButtons.buttonContainer}>
         <TouchableOpacity
