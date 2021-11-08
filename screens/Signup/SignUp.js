@@ -1,34 +1,35 @@
-import {
-  TextInput,
-  KeyboardAvoidingView,
-  View,
-  Text,
-  TouchableOpacity,
-} from "react-native";
-import {
-  globalStyles,
-  globalButtons,
-  globalText,
-} from "../../styles/globalStyles";
-import { styles } from "./styles";
-import React, { useState, useEffect } from "react";
-import { auth } from "../../firebase";
-import { useNavigation } from "@react-navigation/core";
+import {TextInput, KeyboardAvoidingView, View, Text, TouchableOpacity} from 'react-native';
+import {globalStyles, globalButtons, globalText} from '~/assets/globalStyles/globalStyles';
+import {styles} from './styles';
+import React, {useState, useEffect} from 'react';
+import {auth} from '~/firebase';
+import {useNavigation} from '@react-navigation/core';
 
+/**
+ * Renders the SignUp screen.
+ *
+ * @returns {Element} The SignUp component.
+ */
 export default function SignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
   const navigation = useNavigation();
 
+  /**
+   * If the password and confirmation match, will create user in firebase database and redirect to Dashboard screen.
+   */
   function handleSignUp() {
     if (confirm === password) {
-      auth
-        .createUserWithEmailAndPassword(email, password)
-        .catch((error) => console.log(error));
+      auth.createUserWithEmailAndPassword(email, password);
     }
   }
 
+  /**
+   * Confirms the password and the conmfirm password input boxes are matching.
+   *
+   * @returns {boolean} Returns whether password matches.
+   */
   function confirmPassword() {
     if (confirm !== password) {
       return false;
@@ -40,7 +41,7 @@ export default function SignUp() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        navigation.replace("Home");
+        navigation.replace('Home');
       }
     });
 
@@ -67,16 +68,11 @@ export default function SignUp() {
         <TextInput
           secureTextEntry
           placeholder="Confirm Password"
-          style={[
-            globalStyles.input,
-            !confirmPassword() && styles.wrongPassword,
-          ]}
+          style={[globalStyles.input, !confirmPassword() && styles.wrongPassword]}
           value={confirm}
           onChangeText={(text) => setConfirm(text)}
         />
-        {!confirmPassword() && (
-          <Text style={styles.warning}> Passwords don't match</Text>
-        )}
+        {!confirmPassword() && <Text style={styles.warning}> Passwords don't match</Text>}
       </View>
       <View style={globalButtons.buttonContainer}>
         <TouchableOpacity
@@ -85,15 +81,10 @@ export default function SignUp() {
             confirmPassword()
               ? [globalButtons.button, globalButtons.buttonOutline]
               : [globalButtons.disabled, globalButtons.disabledOutline]
-          }
-        >
-          <Text
-            style={confirmPassword() ? globalText.text : globalText.fixErrors}
-          >
-            Register
-          </Text>
+          }>
+          <Text style={confirmPassword() ? globalText.text : globalText.fixErrors}>Register</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.replace("Login")}>
+        <TouchableOpacity onPress={() => navigation.replace('Login')}>
           <Text style={styles.text}>Already Registered?</Text>
         </TouchableOpacity>
       </View>

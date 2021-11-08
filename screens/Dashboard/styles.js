@@ -1,17 +1,5 @@
-import { colors } from "../../styles/globalStyles";
+import {colors} from '~/assets/globalStyles/globalStyles';
 
 export const styles = {
-  text: {
-    color: colors.primary,
-  },
-  inputContainer: { width: "80%" },
-  input: {
-    backgroundColor: colors.tertiary,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginTop: 5,
-  },
-  button: {},
-  buttonContainer: {},
+  test: {color: colors.text}
 };

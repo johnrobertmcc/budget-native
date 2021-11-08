@@ -1,9 +1,11 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
+    amd: true,
+    node: true
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:jsdoc/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -11,9 +13,8 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: 'module'
   },
-  plugins: ['react', 'react-hooks', 'prettier'],
+  plugins: ['react', 'react-hooks', 'prettier', 'jsdoc'],
   rules: {
-    '@next/next/no-img-element': 'off',
     'func-style': ['error', 'declaration'],
     'jsdoc/check-indentation': 'warn',
     'jsdoc/check-line-alignment': [
@@ -28,12 +29,6 @@ module.exports = {
       {
         checkRestProperty: true,
         unnamedRootBase: ['props']
-      }
-    ],
-    'jsdoc/check-values': [
-      'warn',
-      {
-        allowedAuthors: ['WebDevStudios']
       }
     ],
     'jsx-a11y/anchor-is-valid': 'off',
