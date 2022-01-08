@@ -15,9 +15,9 @@ export function useAppContext() {
 /**
  * Provide site context for components.
  *
- * @param  props0
- * @param  props0.children
- * @returns {Element}                 The AppWrapper context component.
+ * @param  {object}      props              The component as props.
+ * @param  {object}      props.children     The app.
+ * @returns {Element}                       The AppWrapper context component.
  */
 export function AppWrapper({children}) {
   const [uid, setUid] = useState(null);

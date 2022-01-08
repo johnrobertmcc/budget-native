@@ -1,7 +1,10 @@
 import {db} from '~/firebase';
 
 /**
- * @param  date
+ * Function to collect the year and quarter from the date string.
+ *
+ * @param   {string}    date   The date to be converted.
+ * @returns {object}           The object with quarter and year.
  */
 export function getDateData(date) {
   const dt = new Date(date);
@@ -16,8 +19,10 @@ export function getDateData(date) {
 }
 
 /**
- * @param  uid
- * @param  data
+ * Function to add the data to Firestore under the user's Id.
+ *
+ * @param   {string}   uid    The user's ID.
+ * @param   {object}   data   The data to add.
  */
 export function addReceipt(uid, data) {
   const dates = getDateData(data?.date);
@@ -32,15 +37,15 @@ export function addReceipt(uid, data) {
       console.error('Error adding document: ', error);
     });
 }
-/**
- */
-export function readReceipts() {
-  db.collection('users')
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(doc);
-        console.log(`${doc.id} => ${doc.data()}`);
-      });
-    });
-}
+// /**
+//  */
+// export function readReceipts() {
+//   db.collection('users')
+//     .get()
+//     .then((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         console.log(doc);
+//         console.log(`${doc.id} => ${doc.data()}`);
+//       });
+//     });
+// }
