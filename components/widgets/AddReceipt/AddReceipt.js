@@ -10,6 +10,9 @@ import {globalButtons, globalText} from '~/assets/globalStyles/globalStyles';
 /**
  * Component to add receipts to Firestore under designated collection.
  *
+ * @param  props0
+ * @param  props0.open
+ * @param  props0.setOpen
  * @returns {Element} Returns the AddReceipt component.
  */
 export default function AddReceipt({open, setOpen}) {
@@ -23,6 +26,8 @@ export default function AddReceipt({open, setOpen}) {
   const [receipt, setReceipt] = useState(defaultReceipt);
   const {uid} = useAppContext();
 
+  /**
+   */
   function handleSubmit() {
     if (
       receipt?.date &&

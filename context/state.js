@@ -6,7 +6,7 @@ const AppContext = createContext();
 /**
  * Export useContext Hook.
  *
- * @return {Function} App context.
+ * @returns {Function} App context.
  */
 export function useAppContext() {
   return useContext(AppContext);
@@ -15,7 +15,9 @@ export function useAppContext() {
 /**
  * Provide site context for components.
  *
- * @return {Element}                 The AppWrapper context component.
+ * @param  props0
+ * @param  props0.children
+ * @returns {Element}                 The AppWrapper context component.
  */
 export function AppWrapper({children}) {
   const [uid, setUid] = useState(null);

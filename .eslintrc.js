@@ -4,6 +4,12 @@ module.exports = {
     node: true,
     es2021: true
   },
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    sourceType: 'module',
+    requireConfigFile: false,
+    allowImportExportEverywhere: true
+  },
   extends: [
     'eslint:recommended',
     'plugin:jsdoc/recommended',
@@ -29,7 +35,12 @@ module.exports = {
       }
     ],
     'jsx-a11y/anchor-is-valid': 'off',
-    'no-console': ['error', {allow: ['warn', 'error']}],
-    'prettier/prettier': 'error'
+    'no-console': ['off', {allow: ['warn', 'error']}],
+    'prettier/prettier': 'error',
+    'no-unused-vars': [
+      'off',
+      {vars: 'all', args: 'after-used', ignoreRestSiblings: false}
+    ],
+    'no-undef': ['off']
   }
 };

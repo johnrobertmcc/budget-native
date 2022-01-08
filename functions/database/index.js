@@ -1,5 +1,8 @@
 import {db} from '~/firebase';
 
+/**
+ * @param  date
+ */
 export function getDateData(date) {
   const dt = new Date(date);
   const oneJan = new Date(dt.getFullYear(), 0, 1);
@@ -12,6 +15,10 @@ export function getDateData(date) {
   };
 }
 
+/**
+ * @param  uid
+ * @param  data
+ */
 export function addReceipt(uid, data) {
   const dates = getDateData(data?.date);
   const {quarter, year} = dates;
@@ -25,6 +32,8 @@ export function addReceipt(uid, data) {
       console.error('Error adding document: ', error);
     });
 }
+/**
+ */
 export function readReceipts() {
   db.collection('users')
     .get()
