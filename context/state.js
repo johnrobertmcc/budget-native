@@ -15,8 +15,8 @@ export function useAppContext() {
 /**
  * Provide site context for components.
  *
- * @param  {object}      props              The component as props.
- * @param  {object}      props.children     The app.
+ * @param {object} props          The component as props.
+ * @param {object} props.children The app.
  * @returns {Element}                       The AppWrapper context component.
  */
 export function AppWrapper({children}) {

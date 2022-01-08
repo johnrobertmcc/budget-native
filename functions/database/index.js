@@ -3,7 +3,7 @@ import {db} from '~/firebase';
 /**
  * Function to collect the year and quarter from the date string.
  *
- * @param   {string}    date   The date to be converted.
+ * @param   {string}   date    The date to be converted.
  * @returns {object}           The object with quarter and year.
  */
 export function getDateData(date) {
@@ -21,8 +21,8 @@ export function getDateData(date) {
 /**
  * Function to add the data to Firestore under the user's Id.
  *
- * @param   {string}   uid    The user's ID.
- * @param   {object}   data   The data to add.
+ * @param {string} uid  The user's ID.
+ * @param {object} data The data to add.
  */
 export function addReceipt(uid, data) {
   const dates = getDateData(data?.date);

@@ -10,9 +10,9 @@ import {globalButtons, globalText} from '~/assets/globalStyles/globalStyles';
 /**
  * Component to add receipts to Firestore under designated collection.
  *
- * @param   {object}    props          The component as props.
- * @param   {boolean}   props.open     Declares if modal is opened or closed.
- * @param   {function}  props.setOpen  Function to open the receipt modal.
+ * @param {object}   props         The component as props.
+ * @param {boolean}  props.open    Declares if modal is opened or closed.
+ * @param {Function} props.setOpen Function to open the receipt modal.
  * @returns {Element}                  Returns the AddReceipt component.
  */
 export default function AddReceipt({open, setOpen}) {

@@ -4,12 +4,12 @@ import {globalStyles} from '~/assets/globalStyles/globalStyles';
 /**
  * Renders a resuable Input component.
  *
- * @param   {object}    props               The component as props.
- * @param   {boolean}   props.secure        Declare whether text entry is secured or not.
- * @param   {string}    props.placeholder   The placeholder for the input.
- * @param   {string}    props.value         The value of the input box.
- * @param   {Function}  props.callback      The function of the input.
- * @param   {object}    props.style         Optional styling.
+ * @param {object}   props             The component as props.
+ * @param {boolean}  props.secure      Declare whether text entry is secured or not.
+ * @param {string}   props.placeholder The placeholder for the input.
+ * @param {string}   props.value       The value of the input box.
+ * @param {Function} props.callback    The function of the input.
+ * @param {object}   props.style       Optional styling.
  * @returns {Element}                       Returns the Input component.
  */
 export default function Input({secure, placeholder, style, value, callback}) {
