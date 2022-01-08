@@ -1,27 +1,19 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
-    amd: true,
-    node: true
+    node: true,
+    es2021: true
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:jsdoc/recommended'],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true
-    },
-    ecmaVersion: 13,
-    sourceType: 'module'
-  },
-  settings: {
-    react: {
-      version: 'detect'
-    }
-  },
-  plugins: ['react', 'react-hooks', 'prettier', 'jsdoc'],
+  extends: [
+    'eslint:recommended',
+    'plugin:jsdoc/recommended',
+    'prettier',
+    'plugin:prettier/recommended'
+  ],
+  plugins: ['jsdoc', 'prettier'],
   rules: {
+    'import/prefer-default-export': 'off',
     'func-style': ['error', 'declaration'],
-    'jsdoc/check-indentation': 'warn',
     'jsdoc/check-line-alignment': [
       'warn',
       'always',

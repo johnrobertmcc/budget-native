@@ -16,6 +16,13 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  dashboard: {
+    flex: 1,
+    backgroundColor: colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%'
+  },
   text: {
     color: colors.primary,
     fontWeight: '700',

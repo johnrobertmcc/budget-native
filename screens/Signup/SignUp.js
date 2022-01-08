@@ -1,9 +1,15 @@
-import {TextInput, KeyboardAvoidingView, View, Text, TouchableOpacity} from 'react-native';
-import {globalStyles, globalButtons, globalText} from '~/assets/globalStyles/globalStyles';
+import {KeyboardAvoidingView, View, Text} from 'react-native';
+import {
+  globalStyles,
+  globalButtons,
+  globalText
+} from '~/assets/globalStyles/globalStyles';
 import {styles} from './styles';
 import React, {useState, useEffect} from 'react';
 import {auth} from '~/firebase';
+import Button from '~/components/helpers/Button';
 import {useNavigation} from '@react-navigation/core';
+import Input from '~/components/helpers/Input';
 
 /**
  * Renders the SignUp screen.
@@ -52,41 +58,48 @@ export default function SignUp() {
     <KeyboardAvoidingView style={globalStyles.container}>
       <Text style={styles.title}>Create an Account</Text>
       <View style={globalStyles.inputContainer}>
-        <TextInput
-          placeholder="Email"
-          style={globalStyles.input}
+        <Input
+          placeholder={'Email'}
           value={email}
-          onChangeText={(text) => setEmail(text)}
+          callback={(text) => setEmail(text)}
         />
-        <TextInput
-          secureTextEntry
-          placeholder="Password"
-          style={[globalStyles.input]}
+        <Input
+          secure={true}
+          placeholder={'Password'}
           value={password}
-          onChangeText={(text) => setPassword(text)}
+          callback={(text) => setPassword(text)}
         />
-        <TextInput
+        <Input
           secureTextEntry
-          placeholder="Confirm Password"
-          style={[globalStyles.input, !confirmPassword() && styles.wrongPassword]}
+          placeholder={'Confirm Password'}
+          style={[
+            globalStyles.input,
+            !confirmPassword() && styles.wrongPassword
+          ]}
           value={confirm}
-          onChangeText={(text) => setConfirm(text)}
+          callback={(text) => setConfirm(text)}
         />
-        {!confirmPassword() && <Text style={styles.warning}> Passwords do not match</Text>}
+        {!confirmPassword() && (
+          <Text style={styles.warning}> Passwords do not match</Text>
+        )}
       </View>
       <View style={globalButtons.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => handleSignUp()}
-          style={
+        <Button
+          callback={() => handleSignUp()}
+          buttonStyle={
             confirmPassword()
               ? [globalButtons.button, globalButtons.buttonOutline]
               : [globalButtons.disabled, globalButtons.disabledOutline]
-          }>
-          <Text style={confirmPassword() ? globalText.text : globalText.fixErrors}>Register</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.replace('Login')}>
-          <Text style={styles.text}>Already Registered?</Text>
-        </TouchableOpacity>
+          }
+          textStyle={confirmPassword() ? globalText.text : globalText.fixErrors}
+          text={'Register'}
+        />
+        <Button
+          callback={() => navigation.replace('Login')}
+          textStyle={styles.text}
+          text={'Already Registered?'}
+          buttonStyle={null}
+        />
       </View>
     </KeyboardAvoidingView>
   );

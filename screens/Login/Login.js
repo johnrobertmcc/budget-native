@@ -1,9 +1,16 @@
-import {TextInput, KeyboardAvoidingView, View, Text, TouchableOpacity} from 'react-native';
-import {globalStyles, globalButtons, globalText} from '~/assets/globalStyles/globalStyles';
+import {KeyboardAvoidingView, View, Text} from 'react-native';
+import {
+  globalStyles,
+  globalButtons,
+  globalText
+} from '~/assets/globalStyles/globalStyles';
 import {styles} from './styles';
 import React, {useState, useEffect} from 'react';
 import {auth} from '~/firebase';
 import {useNavigation} from '@react-navigation/core';
+import Input from '~/components/helpers/Input';
+import Button from '~/components/helpers/Button';
+import {useAppContext} from '~/context/state';
 
 /**
  * Renders the Login screen.
@@ -15,17 +22,21 @@ export default function LogIn() {
   const [password, setPassword] = useState('');
   const [credentials, catchCredentials] = useState(true);
   const navigation = useNavigation();
+  const {uid, setUid} = useAppContext();
 
   /**
    * Logs in the user with provided credentials if valid.
    */
   function handleLogin() {
-    auth.signInWithEmailAndPassword(email, password).catch(() => catchCredentials(false));
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch(() => catchCredentials(false));
   }
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
+        setUid(user.uid);
         catchCredentials(true);
         navigation.replace('Home');
       }
@@ -34,35 +45,40 @@ export default function LogIn() {
     return unsubscribe;
   }, []);
 
+  console.log('login uid', uid);
   return (
     <KeyboardAvoidingView style={globalStyles.container}>
       <Text style={styles.title}> Log In</Text>
       <View style={globalStyles.inputContainer}>
-        <TextInput
-          placeholder="Email"
-          style={globalStyles.input}
+        <Input
+          placeholder={'Email'}
           value={email}
-          onChangeText={(text) => setEmail(text)}></TextInput>
-        <TextInput
-          secureTextEntry
+          callback={(text) => setEmail(text)}
+        />
+        <Input
           placeholder="Password"
-          style={globalStyles.input}
+          secure
+          callback={(text) => setPassword(text)}
           value={password}
-          onChangeText={(text) => setPassword(text)}></TextInput>
+        />
       </View>
       <View style={globalButtons.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => handleLogin()}
-          style={
+        <Button
+          textStyle={credentials ? globalText.text : globalText.fixErrors}
+          text={'Login'}
+          buttonStyle={
             credentials
               ? [globalButtons.button, globalButtons.buttonOutline]
               : [globalButtons.disabled, globalButtons.disabledOutline]
-          }>
-          <Text style={credentials ? globalText.text : globalText.fixErrors}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.replace('Sign Up')}>
-          <Text style={styles.text}>No account?</Text>
-        </TouchableOpacity>
+          }
+          callback={() => handleLogin()}
+        />
+        <Button
+          callback={() => navigation.replace('Sign Up')}
+          textStyle={styles.text}
+          text={'No Account?'}
+          buttonStyle={null}
+        />
       </View>
     </KeyboardAvoidingView>
   );

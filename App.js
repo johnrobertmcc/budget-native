@@ -4,7 +4,7 @@ import Dashboard from '~/screens/Dashboard';
 import React from 'react';
 import LogIn from '~/screens/Login';
 import SignUp from '~/screens/Signup';
-
+import {AppWrapper} from './context/state';
 const Stack = createNativeStackNavigator();
 /**
  * The entry file for the application.
@@ -13,12 +13,18 @@ const Stack = createNativeStackNavigator();
  */
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LogIn} />
-        <Stack.Screen name="Home" component={Dashboard} />
-        <Stack.Screen name="Sign Up" component={SignUp} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AppWrapper>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false
+          }}
+        >
+          <Stack.Screen name="Login" component={LogIn} />
+          <Stack.Screen name="Home" component={Dashboard} />
+          <Stack.Screen name="Sign Up" component={SignUp} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AppWrapper>
   );
 }
